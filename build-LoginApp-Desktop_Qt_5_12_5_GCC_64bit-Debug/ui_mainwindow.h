@@ -80,6 +80,7 @@ public:
 
         lineEdit_password = new QLineEdit(groupBox);
         lineEdit_password->setObjectName(QString::fromUtf8("lineEdit_password"));
+        lineEdit_password->setEchoMode(QLineEdit::Password);
 
         horizontalLayout_2->addWidget(lineEdit_password);
 
@@ -96,7 +97,7 @@ public:
 
         label_pic = new QLabel(centralwidget);
         label_pic->setObjectName(QString::fromUtf8("label_pic"));
-        label_pic->setGeometry(QRect(26, 76, 181, 171));
+        label_pic->setGeometry(QRect(100, 80, 181, 171));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName(QString::fromUtf8("menubar"));

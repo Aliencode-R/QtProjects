@@ -8,7 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    QPixmap pix("/home/rishabh/Downloads/login.png");
+    QPixmap pix(":/resources/img/login.png");
     int width = ui->label_pic->width();
     int height = ui->label_pic->height();
     ui->label_pic->setPixmap(pix.scaled(width,height,Qt::KeepAspectRatio));
@@ -27,15 +27,20 @@ void MainWindow::on_pushButton_login_clicked()
 
     if(username == "test" && password == "test")
     {
-        QMessageBox::information(this,"Login","username and password is correct");
+//        QMessageBox::information(this,"Login","username and password is correct");
+
 //        hide();
-        SecDialog = new secDialog(this);
-        SecDialog->show();
+//        SecDialog = new secDialog(this);
+//        SecDialog->show();
+
+        ui->statusbar->showMessage("username and password is correct");  // second parameter for time out in mil-sec
 
     }
     else
     {
 
-        QMessageBox::warning(this,"Login","username and password is not correct");
+//        QMessageBox::warning(this,"Login","username and password is not correct");
+
+           ui->statusbar->showMessage("username and password is not correct");
     }
 }

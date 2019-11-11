@@ -54,11 +54,13 @@ OBJECTS_DIR   = ./
 
 SOURCES       = ../LoginApp/main.cpp \
 		../LoginApp/mainwindow.cpp \
-		../LoginApp/secdialog.cpp moc_mainwindow.cpp \
+		../LoginApp/secdialog.cpp qrc_resource.cpp \
+		moc_mainwindow.cpp \
 		moc_secdialog.cpp
 OBJECTS       = main.o \
 		mainwindow.o \
 		secdialog.o \
+		qrc_resource.o \
 		moc_mainwindow.o \
 		moc_secdialog.o
 DIST          = ../../Qt/5.12.5/gcc_64/mkspecs/features/spec_pre.prf \
@@ -468,7 +470,8 @@ Makefile: ../LoginApp/LoginApp.pro ../../Qt/5.12.5/gcc_64/mkspecs/linux-g++/qmak
 		../../Qt/5.12.5/gcc_64/mkspecs/features/exceptions.prf \
 		../../Qt/5.12.5/gcc_64/mkspecs/features/yacc.prf \
 		../../Qt/5.12.5/gcc_64/mkspecs/features/lex.prf \
-		../LoginApp/LoginApp.pro
+		../LoginApp/LoginApp.pro \
+		../LoginApp/resource.qrc
 	$(QMAKE) -o Makefile ../LoginApp/LoginApp.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug
 ../../Qt/5.12.5/gcc_64/mkspecs/features/spec_pre.prf:
 ../../Qt/5.12.5/gcc_64/mkspecs/common/unix.conf:
@@ -667,6 +670,7 @@ Makefile: ../LoginApp/LoginApp.pro ../../Qt/5.12.5/gcc_64/mkspecs/linux-g++/qmak
 ../../Qt/5.12.5/gcc_64/mkspecs/features/yacc.prf:
 ../../Qt/5.12.5/gcc_64/mkspecs/features/lex.prf:
 ../LoginApp/LoginApp.pro:
+../LoginApp/resource.qrc:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ../LoginApp/LoginApp.pro -spec linux-g++ CONFIG+=debug CONFIG+=qml_debug
 
@@ -681,6 +685,7 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
+	$(COPY_FILE) --parents ../LoginApp/resource.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents ../../Qt/5.12.5/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../LoginApp/mainwindow.h ../LoginApp/secdialog.h $(DISTDIR)/
 	$(COPY_FILE) --parents ../LoginApp/main.cpp ../LoginApp/mainwindow.cpp ../LoginApp/secdialog.cpp $(DISTDIR)/
@@ -708,8 +713,14 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all:
+compiler_rcc_make_all: qrc_resource.cpp
 compiler_rcc_clean:
+	-$(DEL_FILE) qrc_resource.cpp
+qrc_resource.cpp: ../LoginApp/resource.qrc \
+		../../Qt/5.12.5/gcc_64/bin/rcc \
+		../LoginApp/img/login.png
+	/home/rishabh/Qt/5.12.5/gcc_64/bin/rcc -name resource ../LoginApp/resource.qrc -o qrc_resource.cpp
+
 compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
@@ -963,7 +974,7 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
 
@@ -1234,7 +1245,9 @@ mainwindow.o: ../LoginApp/mainwindow.cpp ../LoginApp/mainwindow.h \
 		../../Qt/5.12.5/gcc_64/include/QtWidgets/QVBoxLayout \
 		../../Qt/5.12.5/gcc_64/include/QtWidgets/QWidget \
 		../../Qt/5.12.5/gcc_64/include/QtWidgets/QMessageBox \
-		../../Qt/5.12.5/gcc_64/include/QtWidgets/qmessagebox.h
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/qmessagebox.h \
+		../../Qt/5.12.5/gcc_64/include/QtCore/QDebug \
+		../../Qt/5.12.5/gcc_64/include/QtGui/QPixmap
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../LoginApp/mainwindow.cpp
 
 secdialog.o: ../LoginApp/secdialog.cpp ../LoginApp/secdialog.h \
@@ -1342,8 +1355,22 @@ secdialog.o: ../LoginApp/secdialog.cpp ../LoginApp/secdialog.h \
 		../../Qt/5.12.5/gcc_64/include/QtCore/qfiledevice.h \
 		../../Qt/5.12.5/gcc_64/include/QtGui/qvector2d.h \
 		../../Qt/5.12.5/gcc_64/include/QtGui/qtouchdevice.h \
-		ui_secdialog.h
+		ui_secdialog.h \
+		../../Qt/5.12.5/gcc_64/include/QtCore/QVariant \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/QApplication \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/qapplication.h \
+		../../Qt/5.12.5/gcc_64/include/QtCore/qcoreapplication.h \
+		../../Qt/5.12.5/gcc_64/include/QtCore/qeventloop.h \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../Qt/5.12.5/gcc_64/include/QtGui/qguiapplication.h \
+		../../Qt/5.12.5/gcc_64/include/QtGui/qinputmethod.h \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/QLabel \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/qlabel.h \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/qframe.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o secdialog.o ../LoginApp/secdialog.cpp
+
+qrc_resource.o: qrc_resource.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_resource.o qrc_resource.cpp
 
 moc_mainwindow.o: moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_mainwindow.o moc_mainwindow.cpp

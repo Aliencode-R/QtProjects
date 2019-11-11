@@ -53,7 +53,11 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit_password"/>
+          <widget class="QLineEdit" name="lineEdit_password">
+           <property name="echoMode">
+            <enum>QLineEdit::Password</enum>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
@@ -71,8 +75,8 @@
    <widget class="QLabel" name="label_pic">
     <property name="geometry">
      <rect>
-      <x>26</x>
-      <y>76</y>
+      <x>100</x>
+      <y>80</y>
       <width>181</width>
       <height>171</height>
      </rect>
