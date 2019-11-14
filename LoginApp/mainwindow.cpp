@@ -33,7 +33,8 @@ void MainWindow::on_pushButton_login_clicked()
 //        SecDialog = new secDialog(this);
 //        SecDialog->show();
 
-        ui->statusbar->showMessage("username and password is correct");  // second parameter for time out in mil-sec
+        ui->statusbar->showMessage("username and password is correct");
+        // second parameter for time out in mil-sec
 
     }
     else
