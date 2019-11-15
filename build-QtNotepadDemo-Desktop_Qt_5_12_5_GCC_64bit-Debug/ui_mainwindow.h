@@ -37,6 +37,10 @@ public:
     QAction *actionUndo;
     QAction *actionAbout_Notepad;
     QAction *actionFonts;
+    QAction *actionColor;
+    QAction *actionBackground_Color;
+    QAction *actionWindow_Color;
+    QAction *actionPrint;
     QWidget *centralwidget;
     QHBoxLayout *horizontalLayout;
     QTextEdit *textEdit;
@@ -104,6 +108,14 @@ public:
         actionAbout_Notepad->setIcon(icon9);
         actionFonts = new QAction(MainWindow);
         actionFonts->setObjectName(QString::fromUtf8("actionFonts"));
+        actionColor = new QAction(MainWindow);
+        actionColor->setObjectName(QString::fromUtf8("actionColor"));
+        actionBackground_Color = new QAction(MainWindow);
+        actionBackground_Color->setObjectName(QString::fromUtf8("actionBackground_Color"));
+        actionWindow_Color = new QAction(MainWindow);
+        actionWindow_Color->setObjectName(QString::fromUtf8("actionWindow_Color"));
+        actionPrint = new QAction(MainWindow);
+        actionPrint->setObjectName(QString::fromUtf8("actionPrint"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         horizontalLayout = new QHBoxLayout(centralwidget);
@@ -139,6 +151,8 @@ public:
         menuFile->addSeparator();
         menuFile->addAction(actionSave);
         menuFile->addAction(actionSave_as);
+        menuFile->addSeparator();
+        menuFile->addAction(actionPrint);
         menuEdit->addAction(actionCut);
         menuEdit->addAction(actionCopy);
         menuEdit->addAction(actionPaste);
@@ -147,6 +161,9 @@ public:
         menuEdit->addAction(actionUndo);
         menuEdit->addSeparator();
         menuEdit->addAction(actionFonts);
+        menuEdit->addAction(actionColor);
+        menuEdit->addAction(actionBackground_Color);
+        menuEdit->addAction(actionWindow_Color);
         menuAbout->addAction(actionAbout_Notepad);
         toolBar->addAction(actionNew);
         toolBar->addAction(actionOpen);
@@ -181,6 +198,10 @@ public:
         actionUndo->setText(QApplication::translate("MainWindow", "Undo", nullptr));
         actionAbout_Notepad->setText(QApplication::translate("MainWindow", "About Notepad", nullptr));
         actionFonts->setText(QApplication::translate("MainWindow", "Font", nullptr));
+        actionColor->setText(QApplication::translate("MainWindow", "Color", nullptr));
+        actionBackground_Color->setText(QApplication::translate("MainWindow", "Background Color", nullptr));
+        actionWindow_Color->setText(QApplication::translate("MainWindow", "Window Color", nullptr));
+        actionPrint->setText(QApplication::translate("MainWindow", "Print", nullptr));
         menuFile->setTitle(QApplication::translate("MainWindow", "File", nullptr));
         menuEdit->setTitle(QApplication::translate("MainWindow", "Edit", nullptr));
         menuAbout->setTitle(QApplication::translate("MainWindow", "About", nullptr));

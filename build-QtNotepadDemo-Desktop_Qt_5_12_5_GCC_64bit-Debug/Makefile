@@ -14,10 +14,10 @@ EQ            = =
 
 CC            = gcc
 CXX           = g++
-DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
+DEFINES       = -DQT_DEPRECATED_WARNINGS -DQT_QML_DEBUG -DQT_PRINTSUPPORT_LIB -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -g -Wall -W -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -g -std=gnu++11 -Wall -W -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I../QtNotepadDemo -I. -I../../Qt/5.12.5/gcc_64/include -I../../Qt/5.12.5/gcc_64/include/QtWidgets -I../../Qt/5.12.5/gcc_64/include/QtGui -I../../Qt/5.12.5/gcc_64/include/QtCore -I. -isystem /usr/include/libdrm -I. -I../../Qt/5.12.5/gcc_64/mkspecs/linux-g++
+INCPATH       = -I../QtNotepadDemo -I. -I../../Qt/5.12.5/gcc_64/include -I../../Qt/5.12.5/gcc_64/include/QtPrintSupport -I../../Qt/5.12.5/gcc_64/include/QtWidgets -I../../Qt/5.12.5/gcc_64/include/QtGui -I../../Qt/5.12.5/gcc_64/include/QtCore -I. -isystem /usr/include/libdrm -I. -I../../Qt/5.12.5/gcc_64/mkspecs/linux-g++
 QMAKE         = /home/rishabh/Qt/5.12.5/gcc_64/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -40,7 +40,7 @@ DISTNAME      = QtNotepadDemo1.0.0
 DISTDIR = /home/rishabh/Qt\ Projects/build-QtNotepadDemo-Desktop_Qt_5_12_5_GCC_64bit-Debug/.tmp/QtNotepadDemo1.0.0
 LINK          = g++
 LFLAGS        = -Wl,-rpath,/home/rishabh/Qt/5.12.5/gcc_64/lib
-LIBS          = $(SUBLIBS) /home/rishabh/Qt/5.12.5/gcc_64/lib/libQt5Widgets.so /home/rishabh/Qt/5.12.5/gcc_64/lib/libQt5Gui.so /home/rishabh/Qt/5.12.5/gcc_64/lib/libQt5Core.so -lGL -lpthread   
+LIBS          = $(SUBLIBS) /home/rishabh/Qt/5.12.5/gcc_64/lib/libQt5PrintSupport.so /home/rishabh/Qt/5.12.5/gcc_64/lib/libQt5Widgets.so /home/rishabh/Qt/5.12.5/gcc_64/lib/libQt5Gui.so /home/rishabh/Qt/5.12.5/gcc_64/lib/libQt5Core.so -lGL -lpthread   
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -235,6 +235,7 @@ DIST          = ../../Qt/5.12.5/gcc_64/mkspecs/features/spec_pre.prf \
 		../../Qt/5.12.5/gcc_64/mkspecs/features/qt_config.prf \
 		../../Qt/5.12.5/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../Qt/5.12.5/gcc_64/mkspecs/features/spec_post.prf \
+		../QtNotepadDemo/.qmake.stash \
 		../../Qt/5.12.5/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../Qt/5.12.5/gcc_64/mkspecs/features/toolchain.prf \
 		../../Qt/5.12.5/gcc_64/mkspecs/features/default_pre.prf \
@@ -443,6 +444,7 @@ Makefile: ../QtNotepadDemo/QtNotepadDemo.pro ../../Qt/5.12.5/gcc_64/mkspecs/linu
 		../../Qt/5.12.5/gcc_64/mkspecs/features/qt_config.prf \
 		../../Qt/5.12.5/gcc_64/mkspecs/linux-g++/qmake.conf \
 		../../Qt/5.12.5/gcc_64/mkspecs/features/spec_post.prf \
+		.qmake.stash \
 		../../Qt/5.12.5/gcc_64/mkspecs/features/exclusive_builds.prf \
 		../../Qt/5.12.5/gcc_64/mkspecs/features/toolchain.prf \
 		../../Qt/5.12.5/gcc_64/mkspecs/features/default_pre.prf \
@@ -641,6 +643,7 @@ Makefile: ../QtNotepadDemo/QtNotepadDemo.pro ../../Qt/5.12.5/gcc_64/mkspecs/linu
 ../../Qt/5.12.5/gcc_64/mkspecs/features/qt_config.prf:
 ../../Qt/5.12.5/gcc_64/mkspecs/linux-g++/qmake.conf:
 ../../Qt/5.12.5/gcc_64/mkspecs/features/spec_post.prf:
+.qmake.stash:
 ../../Qt/5.12.5/gcc_64/mkspecs/features/exclusive_builds.prf:
 ../../Qt/5.12.5/gcc_64/mkspecs/features/toolchain.prf:
 ../../Qt/5.12.5/gcc_64/mkspecs/features/default_pre.prf:
@@ -840,7 +843,7 @@ moc_mainwindow.cpp: ../QtNotepadDemo/mainwindow.h \
 		../../Qt/5.12.5/gcc_64/include/QtGui/qicon.h \
 		moc_predefs.h \
 		../../Qt/5.12.5/gcc_64/bin/moc
-	/home/rishabh/Qt/5.12.5/gcc_64/bin/moc $(DEFINES) --include '/home/rishabh/Qt Projects/build-QtNotepadDemo-Desktop_Qt_5_12_5_GCC_64bit-Debug/moc_predefs.h' -I/home/rishabh/Qt/5.12.5/gcc_64/mkspecs/linux-g++ -I'/home/rishabh/Qt Projects/QtNotepadDemo' -I/home/rishabh/Qt/5.12.5/gcc_64/include -I/home/rishabh/Qt/5.12.5/gcc_64/include/QtWidgets -I/home/rishabh/Qt/5.12.5/gcc_64/include/QtGui -I/home/rishabh/Qt/5.12.5/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtNotepadDemo/mainwindow.h -o moc_mainwindow.cpp
+	/home/rishabh/Qt/5.12.5/gcc_64/bin/moc $(DEFINES) --include '/home/rishabh/Qt Projects/build-QtNotepadDemo-Desktop_Qt_5_12_5_GCC_64bit-Debug/moc_predefs.h' -I/home/rishabh/Qt/5.12.5/gcc_64/mkspecs/linux-g++ -I'/home/rishabh/Qt Projects/QtNotepadDemo' -I/home/rishabh/Qt/5.12.5/gcc_64/include -I/home/rishabh/Qt/5.12.5/gcc_64/include/QtPrintSupport -I/home/rishabh/Qt/5.12.5/gcc_64/include/QtWidgets -I/home/rishabh/Qt/5.12.5/gcc_64/include/QtGui -I/home/rishabh/Qt/5.12.5/gcc_64/include/QtCore -I. -I/usr/include/c++/7 -I/usr/include/x86_64-linux-gnu/c++/7 -I/usr/include/c++/7/backward -I/usr/lib/gcc/x86_64-linux-gnu/7/include -I/usr/local/include -I/usr/lib/gcc/x86_64-linux-gnu/7/include-fixed -I/usr/include/x86_64-linux-gnu -I/usr/include ../QtNotepadDemo/mainwindow.h -o moc_mainwindow.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -1086,7 +1089,66 @@ mainwindow.o: ../QtNotepadDemo/mainwindow.cpp ../QtNotepadDemo/mainwindow.h \
 		../../Qt/5.12.5/gcc_64/include/QtGui/qtouchdevice.h \
 		../../Qt/5.12.5/gcc_64/include/QtWidgets/qtabwidget.h \
 		../../Qt/5.12.5/gcc_64/include/QtGui/qicon.h \
-		ui_mainwindow.h
+		ui_mainwindow.h \
+		../../Qt/5.12.5/gcc_64/include/QtCore/QVariant \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/QAction \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/qaction.h \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/qactiongroup.h \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/QApplication \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/qapplication.h \
+		../../Qt/5.12.5/gcc_64/include/QtCore/qcoreapplication.h \
+		../../Qt/5.12.5/gcc_64/include/QtCore/qeventloop.h \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/qdesktopwidget.h \
+		../../Qt/5.12.5/gcc_64/include/QtGui/qguiapplication.h \
+		../../Qt/5.12.5/gcc_64/include/QtGui/qinputmethod.h \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/QHBoxLayout \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/qboxlayout.h \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/qlayout.h \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/qlayoutitem.h \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/qgridlayout.h \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/QMenu \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/qmenu.h \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/QMenuBar \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/qmenubar.h \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/QStatusBar \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/qstatusbar.h \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/QTextEdit \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/qtextedit.h \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/qabstractscrollarea.h \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/qframe.h \
+		../../Qt/5.12.5/gcc_64/include/QtGui/qtextdocument.h \
+		../../Qt/5.12.5/gcc_64/include/QtGui/qtextoption.h \
+		../../Qt/5.12.5/gcc_64/include/QtGui/qtextcursor.h \
+		../../Qt/5.12.5/gcc_64/include/QtGui/qtextformat.h \
+		../../Qt/5.12.5/gcc_64/include/QtGui/qpen.h \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/QToolBar \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/qtoolbar.h \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/QWidget \
+		../../Qt/5.12.5/gcc_64/include/QtCore/QFile \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/QFileDialog \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/qfiledialog.h \
+		../../Qt/5.12.5/gcc_64/include/QtCore/qdir.h \
+		../../Qt/5.12.5/gcc_64/include/QtCore/qfileinfo.h \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/qdialog.h \
+		../../Qt/5.12.5/gcc_64/include/QtCore/QTextStream \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/QMessageBox \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/qmessagebox.h \
+		../../Qt/5.12.5/gcc_64/include/QtGui/QFont \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/QFontDialog \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/qfontdialog.h \
+		../../Qt/5.12.5/gcc_64/include/QtGui/QColor \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/QColorDialog \
+		../../Qt/5.12.5/gcc_64/include/QtWidgets/qcolordialog.h \
+		../../Qt/5.12.5/gcc_64/include/QtPrintSupport/QPrintDialog \
+		../../Qt/5.12.5/gcc_64/include/QtPrintSupport/qprintdialog.h \
+		../../Qt/5.12.5/gcc_64/include/QtPrintSupport/qtprintsupportglobal.h \
+		../../Qt/5.12.5/gcc_64/include/QtPrintSupport/qtprintsupport-config.h \
+		../../Qt/5.12.5/gcc_64/include/QtPrintSupport/qabstractprintdialog.h \
+		../../Qt/5.12.5/gcc_64/include/QtPrintSupport/QPrinter \
+		../../Qt/5.12.5/gcc_64/include/QtPrintSupport/qprinter.h \
+		../../Qt/5.12.5/gcc_64/include/QtGui/qpagedpaintdevice.h \
+		../../Qt/5.12.5/gcc_64/include/QtGui/qpagelayout.h \
+		../../Qt/5.12.5/gcc_64/include/QtGui/qpagesize.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../QtNotepadDemo/mainwindow.cpp
 
 qrc_Resource.o: qrc_Resource.cpp 

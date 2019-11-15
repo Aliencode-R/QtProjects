@@ -6,7 +6,10 @@
 #include<QMessageBox>
 #include<QFont>
 #include<QFontDialog>
-
+#include<QColor>
+#include<QColorDialog>
+#include<QPrintDialog>
+#include<QPrinter>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -107,7 +110,7 @@ void MainWindow::on_actionUndo_triggered()
 
 void MainWindow::on_actionAbout_Notepad_triggered()
 {
-    QString text = "Auther : Rishabh Sharma \nDate : 14 November \nVersion : 1.1";
+    QString text = "Auther : Rishabh Sharma \nDate : 15 November \nVersion : 2.0";
     QMessageBox::about(this,"About Notepad",text);
 }
 
@@ -119,4 +122,38 @@ void MainWindow::on_actionFonts_triggered()
         ui->textEdit->setFont(font);
     }
     else return;
+}
+
+void MainWindow::on_actionColor_triggered()
+{
+    QColor color = QColorDialog::getColor(Qt::white,this,"Choose Color");
+    if(color.isValid()){
+        ui->textEdit->setTextColor(color);
+    }
+}
+
+void MainWindow::on_actionBackground_Color_triggered()
+{
+    QColor color = QColorDialog::getColor(Qt::white,this,"Choose Color");
+    if(color.isValid()){
+        ui->textEdit->setTextBackgroundColor(color);
+    }
+}
+
+void MainWindow::on_actionWindow_Color_triggered()
+{
+    QColor color = QColorDialog::getColor(Qt::white,this,"Choose Color");
+    if(color.isValid()){
+        ui->textEdit->setPalette(QPalette(color));
+    }
+}
+///home/rishabh/Qt Projects/build-QtNotepadDemo-Desktop_Qt_5_12_5_GCC_64bit-Debug/print.pdf
+void MainWindow::on_actionPrint_triggered()
+{
+    QPrinter printer;
+    printer.setPrinterName("printer name");
+    QPrintDialog dialog(&printer,this);
+    if(dialog.exec() == QDialog::Rejected) return;
+    ui->textEdit->print(&printer);
+
 }
