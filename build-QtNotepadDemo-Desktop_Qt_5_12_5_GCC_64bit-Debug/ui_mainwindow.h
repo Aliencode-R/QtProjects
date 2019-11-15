@@ -36,6 +36,7 @@ public:
     QAction *actionRedo;
     QAction *actionUndo;
     QAction *actionAbout_Notepad;
+    QAction *actionFonts;
     QWidget *centralwidget;
     QHBoxLayout *horizontalLayout;
     QTextEdit *textEdit;
@@ -101,6 +102,8 @@ public:
         QIcon icon9;
         icon9.addFile(QString::fromUtf8(":/Res/about.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionAbout_Notepad->setIcon(icon9);
+        actionFonts = new QAction(MainWindow);
+        actionFonts->setObjectName(QString::fromUtf8("actionFonts"));
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName(QString::fromUtf8("centralwidget"));
         horizontalLayout = new QHBoxLayout(centralwidget);
@@ -142,6 +145,8 @@ public:
         menuEdit->addSeparator();
         menuEdit->addAction(actionRedo);
         menuEdit->addAction(actionUndo);
+        menuEdit->addSeparator();
+        menuEdit->addAction(actionFonts);
         menuAbout->addAction(actionAbout_Notepad);
         toolBar->addAction(actionNew);
         toolBar->addAction(actionOpen);
@@ -175,6 +180,7 @@ public:
         actionRedo->setText(QApplication::translate("MainWindow", "Redo", nullptr));
         actionUndo->setText(QApplication::translate("MainWindow", "Undo", nullptr));
         actionAbout_Notepad->setText(QApplication::translate("MainWindow", "About Notepad", nullptr));
+        actionFonts->setText(QApplication::translate("MainWindow", "Font", nullptr));
         menuFile->setTitle(QApplication::translate("MainWindow", "File", nullptr));
         menuEdit->setTitle(QApplication::translate("MainWindow", "Edit", nullptr));
         menuAbout->setTitle(QApplication::translate("MainWindow", "About", nullptr));

@@ -4,6 +4,8 @@
 #include<QFileDialog>
 #include<QTextStream>
 #include<QMessageBox>
+#include<QFont>
+#include<QFontDialog>
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -105,6 +107,16 @@ void MainWindow::on_actionUndo_triggered()
 
 void MainWindow::on_actionAbout_Notepad_triggered()
 {
-    QString text = "Auther : Rishabh Sharma \nDate : 14 November \nVersion : 1.00";
+    QString text = "Auther : Rishabh Sharma \nDate : 14 November \nVersion : 1.1";
     QMessageBox::about(this,"About Notepad",text);
+}
+
+void MainWindow::on_actionFonts_triggered()
+{
+    bool ok;
+    QFont font = QFontDialog::getFont(&ok,this);
+    if(ok){
+        ui->textEdit->setFont(font);
+    }
+    else return;
 }

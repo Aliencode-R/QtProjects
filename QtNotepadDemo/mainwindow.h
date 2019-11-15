@@ -36,6 +36,8 @@ private slots:
 
     void on_actionAbout_Notepad_triggered();
 
+    void on_actionFonts_triggered();
+
 private:
     Ui::MainWindow *ui;
     QString file_path;
